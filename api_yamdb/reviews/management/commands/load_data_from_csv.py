@@ -23,7 +23,7 @@ class Command(BaseCommand):
             or Title.objects.exists()
             or Review.objects.exists()
             or Comment.objects.exists()
-            or User.objects.exists()
+            # or User.objects.exists()
         ):
             print('в таблице Жанры уже содержатся данные.')
             print(ALREDY_LOADED_ERROR_MESSAGE)

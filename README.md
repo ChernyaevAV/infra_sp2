@@ -1,44 +1,35 @@
 # api_yamdb
 ## Описание
 Backend приложения YamDB. 
-Проект объединяет в себе функционал работы api сервисов проекта для публикации произведений,
+Проект объединяет в себе функционал работы API-сервисов проекта для публикации произведений,
 отзывов и комментариев к ним. 
 View- функции реализованы с помощью вьюсетов, аутентификация пользователей через JWT-токены.
 
 ## Установка
+Запустить контейнер:
 ```
-https://github.com/Diana187/api_yamdb.git
+docker image infra-sp2 run 
 ```
-```
-cd api_yamdb
-```
-Cоздать и активировать виртуальное окружение:
-```
-python3 -m venv env
-```
-```
-source env/bin/activate
-```
-Установить зависимости из файла requirements.txt:
-```
-python3 -m pip install --upgrade pip
-```
-```
-pip install -r requirements.txt
-```
+
 Выполнить миграции:
 ```
-python3 manage.py migrate
+docker-compose exec web python manage.py migrate
 ```
+
+Выполнить сборку статики:
+```
+docker-compose exec web python manage.py collectstatic --no-input 
+```
+
 Выполнить импорт данных в базу данных (при необходимости):
 ```
-python3 manage.py load_data_from_csv
+docker-compose exec web python manage.py load_data_from_csv
 ```
-Запустить проект:
-```
-python3 manage.py runserver
-```
-Переменные окружения (по умолчанию):
+
+# Запуск проекта
+# [http://localhost](http://localhost)
+
+# Переменные окружения (по умолчанию):
 ```
 ====содержание файла .env=====
 # указываем, что работаем с postgresql
@@ -63,4 +54,4 @@ DB_PORT
 
 # Примеры
 Доступ к документации API представлен по ссылке:
-[http://127.0.0.1:8000/redoc/](http://127.0.0.1:8000/redoc/)
+[http://localhost/redoc/](http://localhost/redoc/)

@@ -114,9 +114,11 @@ docker-compose exec web python manage.py collectstatic --no-input
 
 ## Загрузка тестовых значений в БД
 
-Чтобы загрузить тестовые значения в базу данных из CSV:
+### Чтобы загрузить тестовые значения в базу данных из CSV:
+### команда используется с ключом 
+### список всех ключей: --help
 ```
-docker-compose exec web python manage.py load_data_from_csv
+docker-compose exec web python manage.py load_data_from_csv -a
 ```
 
 [//]: # (Перейдите в контейнер приложения и загрузить данные в БД: )

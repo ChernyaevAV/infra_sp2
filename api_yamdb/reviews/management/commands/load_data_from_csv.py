@@ -104,7 +104,10 @@ class Command(BaseCommand):
         try:
             if options['all']:
                 for model, name_file in DATA.items():
+                    self.stdout.write(f'Загрузка данных из {name_file} .....',
+                                      ending='\t')
                     load_data(model, name_file)
+                    self.stdout.write(self.style.SUCCESS('OK'))
                 load_genre_title()
                 self.stdout.write(
                     self.style.SUCCESS('Таблицы загружены в базу данных.'))
@@ -118,11 +121,12 @@ class Command(BaseCommand):
                                            ' список всех ключей: --help'))
         except django.db.utils.IntegrityError as e:
             self.stdout.write(
-                self.style.ERROR('Ошибка загрузки. База данных не пуста. '
-                                 'Совпадение уникальных полей. "%s"' % e))
+                self.style.ERROR('\nОшибка загрузки. База данных не пуста. '
+                                 f'Совпадение уникальных полей. \n{e}'))
         except ObjectDoesNotExist:
             self.stdout.write(
                 self.style.NOTICE('Нет данных из связанных таблиц'))
         except Exception as e:
-            self.stdout.write(self.style.ERROR('Ошибка загрузки данных:'
-                                               ' "%s"' % e))
+            self.stdout.write(
+                self.style.ERROR(f'\nОшибка загрузки данных: {e}')
+            )

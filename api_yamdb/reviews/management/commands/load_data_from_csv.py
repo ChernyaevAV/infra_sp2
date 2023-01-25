@@ -108,7 +108,12 @@ class Command(BaseCommand):
                                       ending='\t')
                     load_data(model, name_file)
                     self.stdout.write(self.style.SUCCESS('OK'))
+
+                self.stdout.write(f'Загрузка данных из genre_title.csv .....',
+                                  ending='')
                 load_genre_title()
+                self.stdout.write(self.style.SUCCESS('OK'))
+
                 self.stdout.write(
                     self.style.SUCCESS('Таблицы загружены в базу данных.'))
             elif options['clear']:
